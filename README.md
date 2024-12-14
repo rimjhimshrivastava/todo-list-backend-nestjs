@@ -22,3 +22,14 @@
 
 6. Delete Task: /todo/:id
 - Deleted the task with id1
+
+###### Deployment
+- Deployed on Render: https://todo-list-backend-nestjs.onrender.com
+- Free tier deployment causes the backend to redeploy taking few minutes when first request is received, subsequent requests are normal speed
+
+###### Installation
+- npm install
+- npm run start
+- For development: npm run start:dev 
+- Build: npm run build
+- For production: num run start:prod
