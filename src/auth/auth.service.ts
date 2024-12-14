@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { SignupDto } from './dtos/signup.dto';
 import { InjectModel } from '@nestjs/mongoose';
-import { User } from './user.schema';
+import { User } from './schema/user.schema';
 import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
@@ -51,5 +51,14 @@ export class AuthService {
     return {
       accessToken,
     };
+  }
+
+  async decodeToken(token: string) {
+    try {
+      const decoded = this.jwtService.decode(token) as { userId: string };
+      return decoded.userId;
+    } catch (error) {
+      throw new UnauthorizedException('Invalid user');
+    }
   }
 }
