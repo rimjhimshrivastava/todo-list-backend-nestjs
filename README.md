@@ -1,5 +1,7 @@
 # todo-list-backend-nestjs
 - Backend for todo list web app, developed using nestjs
+- Made use of MongoDB atlas for database
+- Used Mongoose for defining schema and interaction wih MongoDB atlas
 
 ###### Working APIs
 1. User Signup: /auth/signup
