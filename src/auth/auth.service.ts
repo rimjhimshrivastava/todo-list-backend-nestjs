@@ -17,6 +17,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
+  // Creates new user 
   async signup(signupData: SignupDto) {
     const { username, password } = signupData;
     const isUsernameNotUnique = await this.UserModel.findOne({
@@ -33,6 +34,7 @@ export class AuthService {
     return this.generateUserTokens(user._id);
   }
 
+  // authentication for existing user
   async login(credentials: SignupDto) {
     const { username, password } = credentials;
     const user = await this.UserModel.findOne({ username });
@@ -46,6 +48,7 @@ export class AuthService {
     return this.generateUserTokens(user._id);
   }
 
+  // generates access token for user using jwt
   async generateUserTokens(userId) {
     const accessToken = this.jwtService.sign({ userId }, { expiresIn: '1h' });
     return {
@@ -53,6 +56,7 @@ export class AuthService {
     };
   }
 
+  // decodes an access token to obtain user id using jwt
   async decodeToken(token: string) {
     try {
       const decoded = this.jwtService.decode(token) as { userId: string };

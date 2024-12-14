@@ -10,6 +10,11 @@ export class TodoController {
     private readonly authService: AuthService,
   ) {}
 
+  /*
+    extracts access token from header, 
+    decodes it to obtain user id for authentication
+    and passes it to todo service
+  */
   @Get()
   async getAllTodos(@Request() req) {
     const token = req.headers['authorization']?.split(' ')[1];

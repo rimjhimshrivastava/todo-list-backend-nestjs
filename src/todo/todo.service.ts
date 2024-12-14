@@ -12,6 +12,7 @@ export class TodoService {
     @InjectModel(User.name) private userModel: Model<User>,
   ) {}
 
+  // returns all todo of requesting user
   async getAllTodos(userId: string) {
     const user = await this.userModel
       .findById(userId)
@@ -24,6 +25,7 @@ export class TodoService {
     };
   }
 
+  // creates a new todo for requesting user
   async createTodo(userId: string, createTodoData: createTodoDto) {
     let user = await this.userModel.findById(userId);
     if (!user) {
@@ -44,6 +46,7 @@ export class TodoService {
     };
   }
 
+  // toggle completion status of selected task
   async updateTodo(userId: string, id: string) {
     let user = await this.userModel.findById(userId);
     let todo = await this.todoModel.findById(id);
@@ -59,6 +62,7 @@ export class TodoService {
     };
   }
 
+  // deletes selected task
   async deleteTodo(userId: string, id: string) {
     let user = await this.userModel.findById(userId);
     let todo = await this.todoModel.findById(id);
